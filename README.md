@@ -7,7 +7,7 @@ This sample application demonstrates how to deploy and run ROS applications with
 To get started, clone this repository.
 
 ```
-git clone https://github.com/aws-samples/greengrass-v2-docker-ros-demo.git ~/greengrass-v2-docker-ros-demo
+git clone -b rpi4 https://github.com/aws-samples/greengrass-v2-docker-ros-demo.git ~/greengrass-v2-docker-ros-demo
 ```
 
 ## Prerequsites
