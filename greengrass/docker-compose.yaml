@@ -8,47 +8,10 @@ services:
   talker:
     image: ros-humble-greengrass-demo:latest
     command: ros2 run demo_nodes_cpp talker
-    environment:
-      - DISPLAY
-      - QT_X11_NO_MITSHM=1
-      - GAZEBO_MASTER_URI=http://localhost:5555
-      - ROS_MASTER_URI=http://localhost:11311
-      - DANCE_CONFIG=/home/robomaker/routines
-      - HARDWARE=true
-    network_mode: "host"
-    privileged: true
-    user: root
-    volumes:
-      - /greengrass:/greengrass
-      - /dev:/dev
-      - /sys:/sys
-      - /tmp/.X11-unix/:/tmp/.X11-unix/
-      - /tmp/esp32-proxy.socket:/tmp/esp32-proxy.socket
-      - /home/ggc_user/routines:/home/robomaker/routines
-      - /home/ggc_user/aws_iot_params.yaml:/config/aws_iot_params.yaml
-
 
   listener:
     image: ros-humble-greengrass-demo:latest
     command: ros2 run demo_nodes_cpp listener
-    environment:
-      - DISPLAY
-      - QT_X11_NO_MITSHM=1
-      - GAZEBO_MASTER_URI=http://localhost:5555
-      - ROS_MASTER_URI=http://localhost:11311
-      - DANCE_CONFIG=/home/robomaker/routines
-      - HARDWARE=true
-    network_mode: "host"
-    privileged: true
-    user: root
-    volumes:
-      - /greengrass:/greengrass
-      - /dev:/dev
-      - /sys:/sys
-      - /tmp/.X11-unix/:/tmp/.X11-unix/
-      - /tmp/esp32-proxy.socket:/tmp/esp32-proxy.socket
-      - /home/ggc_user/routines:/home/robomaker/routines
-      - /home/ggc_user/aws_iot_params.yaml:/config/aws_iot_params.yaml
 
   greengrass_bridge:
     image: ros-humble-greengrass-demo:latest
