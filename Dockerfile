@@ -23,14 +23,8 @@ LABEL build_step="DemoNodesROSPackage_Build"
 RUN mkdir -p /ws/src
 WORKDIR /ws
 RUN git clone https://github.com/ros2/demos.git \
-    -b $ROS_DISTRO \
-    --no-checkout \
-    --depth 1 \
-    --filter=blob:none \
-    src/demos
-    
-RUN cd src/demos && \
-    git sparse-checkout set demo_nodes_cpp
+    -b $ROS_DISTRO ../tmp && \
+    cp -r ../tmp/demo_nodes_cpp src/demos
     
 RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
     colcon build --build-base workspace/build --install-base /opt/ros_demos
