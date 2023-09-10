@@ -4,9 +4,8 @@ ARG LOCAL_WS_DIR=workspace
 
 # ==== ROS Build Stages ====
 
-# ==== Base ROS Build Image arm64 ====
-FROM ros:${ROS_DISTRO}-ros-base AS build-base
-#FROM --platform=linux/arm64 tiryoh/ros2:foxy-20230820T0207  AS build-base
+# ==== Base ROS Build Image ====
+FROM --platform=linux/arm64 ros:${ROS_DISTRO}-ros-base AS build-base
 LABEL component="com.example.ros2.demo"
 LABEL build_step="ROSDemoNodes_Build"
 
@@ -36,6 +35,20 @@ RUN cd src/demos && \
 RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
     colcon build --build-base workspace/build --install-base /opt/ros_demos
 
+# ==== Package 2: Greengrass Bridge Node ==== 
+FROM build-base AS greengrass-bridge-package
+LABEL component="com.example.ros2.demo"
+LABEL build_step="GreengrassBridgeROSPackage_Build"
+ARG LOCAL_WS_DIR
+
+COPY ${LOCAL_WS_DIR}/src /ws/src
+WORKDIR /ws
+
+# Cache the colcon build directory.
+RUN --mount=type=cache,target=${LOCAL_WS_DIR}/build:/ws/build \
+    . /opt/ros/$ROS_DISTRO/setup.sh && \
+    colcon build \
+     --install-base /opt/greengrass_bridge
 
 # ==== ROS Runtime Image (with the two packages) ====
 FROM build-base AS runtime-image
