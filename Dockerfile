@@ -42,6 +42,7 @@ FROM build-base AS runtime-image
 LABEL component="com.example.ros2.demo"
 
 COPY --from=ros-demos-package /opt/ros_demos /opt/ros_demos
+COPY --from=greengrass-bridge-package /opt/greengrass_bridge /opt/greengrass_bridge
 
 # Add the application source file to the entrypoint.
 WORKDIR /
