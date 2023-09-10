@@ -20,6 +20,6 @@ IOT_CONFIG_FILE=greengrass/aws_iot_params.yaml
 cat ${IOT_CONFIG_FILE}.template | sed -e "s/IOT_ENDPOINT_PLACEHOLDER/${IOT_ENDPOINT}/g" > ${IOT_CONFIG_FILE}
 
 aws s3 cp greengrass/aws_iot_params.yaml s3://${DEPLOYMENT_BUCKET}/artifacts/aws_iot_params.yaml
-cat ${RECIPE_CONFIG_FILE}.template | sed -e "s#S3_BUCKET_PLACEHOLDER#${DEPLOYMENT_BUCKET}#g"  -e  "s#YOUR_PRIVATE_ECR_IMAGE#${ECR_IMAGE// /}#g"   -e "s#DANCE_ROUTINE_PLACEHOLDER#${DANCE_FILE}#g" > ${RECIPE_CONFIG_FILE}
+cat ${RECIPE_CONFIG_FILE}.template | sed -e "s#S3_BUCKET_PLACEHOLDER#${DEPLOYMENT_BUCKET}#g"  -e  "s#YOUR_PRIVATE_ECR_IMAGE#${ECR_IMAGE// /}#g"  > ${RECIPE_CONFIG_FILE}
 aws greengrassv2 create-component-version     --inline-recipe fileb://${RECIPE_CONFIG_FILE}
 
