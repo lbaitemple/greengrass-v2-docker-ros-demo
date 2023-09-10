@@ -50,4 +50,16 @@ services:
       - /home/ggc_user/routines:/home/robomaker/routines
       - /home/ggc_user/aws_iot_params.yaml:/config/aws_iot_params.yaml
 
+  greengrass_bridge:
+    image: ros-humble-greengrass-demo:latest
+    command: ros2 launch greengrass_bridge greengrass_bridge.launch.py ros_topics:="['chatter']" iot_topics:="['cloud_chatter']"
+    environment:
+      - AWS_REGION
+      - SVCUID
+      - AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT
+      - AWS_CONTAINER_AUTHORIZATION_TOKEN
+      - AWS_CONTAINER_CREDENTIALS_FULL_URI
+    volumes: 
+      - "/greengrass/v2/ipc.socket:/greengrass/v2/ipc.socket"
+
 
