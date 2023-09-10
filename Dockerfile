@@ -1,12 +1,12 @@
 # Set main arguments.
-ARG ROS_DISTRO=foxy
+ARG ROS_DISTRO=humble
 ARG LOCAL_WS_DIR=workspace
 
 # ==== ROS Build Stages ====
 
 # ==== Base ROS Build Image arm64 ====
-#FROM ros:${ROS_DISTRO}-ros-base AS build-base
-FROM --platform=linux/arm64 tiryoh/ros2:foxy-20230820T0207  AS build-base
+FROM ros:${ROS_DISTRO}-ros-base AS build-base
+#FROM --platform=linux/arm64 tiryoh/ros2:foxy-20230820T0207  AS build-base
 LABEL component="com.example.ros2.demo"
 LABEL build_step="ROSDemoNodes_Build"
 
