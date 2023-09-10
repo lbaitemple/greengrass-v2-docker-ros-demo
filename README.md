@@ -13,7 +13,10 @@ git clone -b rpi4 https://github.com/aws-samples/greengrass-v2-docker-ros-demo.g
 ## Prerequsites
 
 Before continuing, make sure your development environment and deployment target (your robot or any Linux-based machine) has the following dependencies
-
+```
+sudo apt-get install -y qemu-user-static binfmt-support
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+```
 ### Software and Tools Dependencies
 On the *development machine* (Your laptop or IDE, ex: AWS RoboMaker IDE):
 
