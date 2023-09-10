@@ -22,9 +22,21 @@ ComponentConfiguration:
           - "chatter"
           - "cloud_chatter"
 Manifests:
+
   - Platform:
       os: all
     Lifecycle:
+        Bootstrap:
+          RequiresPrivilege: True
+          Script: |
+            echo "Bootstrapping the dance application! as root This runs only once during the deployment."
+            cp {artifacts:path}/aws_iot_params.yaml /home/ggc_user/aws_iot_params.yaml
+            cat << EOF > {artifacts:path}/.env
+            AUTO_START={configuration:/auto_start}
+            SVCUID=$SVCUID
+            AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT=$AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT
+            EOF
+            chown ggc_user:ggc_group {artifacts:path}/.env
         Install: |
            docker tag YOUR_PRIVATE_ECR_IMAGE ros-humble-greengrass-demo:latest
         Startup: |
