@@ -39,8 +39,8 @@ class GreengrassBridge(Node):
         self.declare_parameters(
             namespace="",
             parameters=[
-                ("iot_topics", []),
-                ("ros_topics", []),
+                ("iot_topics", ["a"]),
+                ("ros_topics", ["/a"]),
                 ("timeout", 10)
             ]
         )
