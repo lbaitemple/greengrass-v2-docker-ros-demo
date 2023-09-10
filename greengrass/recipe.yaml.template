@@ -33,7 +33,7 @@ Manifests:
         Install:
           Script: |
             echo "Installing the dance application! This will run everytime the Greengrass core software is started."
-            docker tag YOUR_PRIVATE_ECR_IMAGE ros-foxy-greengrass-demo:latest
+            docker tag YOUR_PRIVATE_ECR_IMAGE ros-humble-greengrass-demo:latest
         Run:
           Script: |
             echo "Running the dance application! This is the main application execution script."
@@ -45,4 +45,4 @@ Manifests:
       - URI: "docker:YOUR_PRIVATE_ECR_IMAGE"
       - URI: "s3://S3_BUCKET_PLACEHOLDER/artifacts/docker-compose.yaml"
       - URI: "s3://S3_BUCKET_PLACEHOLDER/artifacts/aws_iot_params.yaml"
-      - URI: "s3://S3_BUCKET_PLACEHOLDER/artifacts/routines/DANCE_ROUTINE_PLACEHOLDER"
+    
