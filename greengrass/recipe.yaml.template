@@ -38,7 +38,7 @@ Manifests:
             EOF
             chown ggc_user:ggc_group {artifacts:path}/.env
         Install: |
-           docker tag YOUR_PRIVATE_ECR_IMAGE ros-humble-greengrass-demo:latest
+           docker tag YOUR_PRIVATE_ECR_IMAGE  DOCKER_IMAGE
         Startup: |
            docker-compose -f {artifacts:path}/docker-compose.yaml up -d
         Shutdown: |
