@@ -24,7 +24,7 @@ RUN mkdir -p /ws/src
 WORKDIR /ws
 RUN git clone https://github.com/ros2/demos.git \
     -b $ROS_DISTRO ../tmp && \
-    cp -r ../tmp/demo_nodes_cpp src/demos
+    cp -r ../tmp/demo_nodes_py src/demos
     
 RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
     colcon build --build-base workspace/build --install-base /opt/ros_demos
