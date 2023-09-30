@@ -7,11 +7,11 @@ services:
     
   talker:
     image: ros-humble-greengrass-demo:latest
-    command: ros2 run demo_nodes_cpp talker
+    command: ros2 run demo_nodes_py talker
 
   listener:
     image: ros-humble-greengrass-demo:latest
-    command: ros2 run demo_nodes_cpp listener
+    command: ros2 run demo_nodes_py listener
 
   greengrass_bridge:
     image: ros-humble-greengrass-demo:latest
