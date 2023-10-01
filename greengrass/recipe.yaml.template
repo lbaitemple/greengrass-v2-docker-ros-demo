@@ -40,10 +40,10 @@ Manifests:
         Install: |
            docker tag YOUR_PRIVATE_ECR_IMAGE  DOCKER_IMAGE
         Startup: |
-           docker-compose -f {artifacts:path}/docker-compose.yaml up -d
+           docker-compose -f {artifacts:path}/docker-compose_nobuild.yaml up -d
         Shutdown: |
-           docker-compose -f {artifacts:path}/docker-compose.yaml down
+           docker-compose -f {artifacts:path}/docker-compose_nobuild.yaml down
     Artifacts:
       - URI: "docker:YOUR_PRIVATE_ECR_IMAGE"
-      - URI: "s3://S3_BUCKET_PLACEHOLDER/artifacts/docker-compose.yaml"
+      - URI: "s3://S3_BUCKET_PLACEHOLDER/artifacts/docker-compose_nobuild.yaml"
           
