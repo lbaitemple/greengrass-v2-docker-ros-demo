@@ -16,7 +16,8 @@ export DOCKER=${DOCKER}":latest"
 export RECIPE_CONFIG_FILE=greengrass/recipe.yaml
 
 ##### no need to change anything below
-aws s3 cp greengrass/docker-compose.yaml s3://${DEPLOYMENT_BUCKET}/artifacts/docker-compose.yaml
+sed '3,6d' greengrass/docker-compose.yaml > greengrass/docker-compose_nobuild.yaml
+aws s3 cp greengrass/docker-compose_nobuild.yaml s3://${DEPLOYMENT_BUCKET}/artifacts/docker-compose_nobuild.yaml
 #aws s3 sync robot_ws/src/mini_pupper_ros/mini_pupper_dance/routines s3://${DEPLOYMENT_BUCKET}/artifacts/routines
 IOT_CONFIG_FILE=greengrass/aws_iot_params.yaml
 cat ${IOT_CONFIG_FILE}.template | sed -e "s/IOT_ENDPOINT_PLACEHOLDER/${IOT_ENDPOINT}/g" > ${IOT_CONFIG_FILE}
